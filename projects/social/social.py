@@ -88,15 +88,18 @@ class SocialGraph:
         # return visited
 
         #non recursive solution
-        stack = []
-        stack.append(user_id)
-        while len(stack) > 0:
-            cur_user = stack.pop()
+        queue = []
+        queue.insert(0, [user_id])
+        while len(queue) > 0:
+            cur_path = queue.pop()
+            cur_user = cur_path[-1]
             if cur_user not in visited:
-                visited[cur_user] = self.users[cur_user]
+                visited[cur_user] = cur_path
                 friends = self.friendships[cur_user]
                 for friend in friends:
-                    stack.append(friend)
+                    path_copy = list(cur_path)
+                    path_copy.append(friend)
+                    queue.insert(0, path_copy)
         return visited
 
 if __name__ == '__main__':
