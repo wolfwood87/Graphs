@@ -66,7 +66,8 @@ class SocialGraph:
             self.add_friendship(possible_friendships[i][0], possible_friendships[i][1])
 
     def get_all_social_paths(self, user_id):
-        """
+        """, visited = {}):
+        
         Takes a user's user_id as an argument
 
         Returns a dictionary containing every user in that user's
@@ -74,14 +75,33 @@ class SocialGraph:
 
         The key is the friend's ID and the value is the path.
         """
-        visited = {}  # Note that this is a dictionary, not a set
+        # Note that this is a dictionary, not a set
+        visited = {}
         # !!!! IMPLEMENT ME
-        return visited
 
+        #recursive solution
+        # if user_id not in visited:
+        #     visited[user_id] = self.users[user_id]
+        #     friends = self.friendships[user_id]
+        #     for friend in friends:
+        #         self.get_all_social_paths(friend, visited)
+        # return visited
+
+        #non recursive solution
+        stack = []
+        stack.append(user_id)
+        while len(stack) > 0:
+            cur_user = stack.pop()
+            if cur_user not in visited:
+                visited[cur_user] = self.users[cur_user]
+                friends = self.friendships[cur_user]
+                for friend in friends:
+                    stack.append(friend)
+        return visited
 
 if __name__ == '__main__':
     sg = SocialGraph()
     sg.populate_graph(10, 2)
     print(sg.friendships)
-    # connections = sg.get_all_social_paths(1)
-    # print(connections)
+    connections = sg.get_all_social_paths(1)
+    print(connections)
