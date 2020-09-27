@@ -100,7 +100,7 @@ class Graph:
             cur_path = queue.pop()
             cur_room = cur_path[-1]
             # print(cur_path)
-            print(cur_room)
+            # print(cur_room)
             edges = self.vertices[cur_room]
             # print(edges)
             if "n" in edges and edges["n"] == "?":
@@ -111,7 +111,7 @@ class Graph:
                     self.add_direction(cur_path[i], dir_dict[cur_path[i+1]])
                     traversal_path.append(dir_dict[cur_path[i+1]])
                     i += 1
-                print(dir_dict)
+                # print(dir_dict)
                 self.visited.remove(cur_path[-1])
                 self.dft(cur_path[-1])
                 return
@@ -123,7 +123,7 @@ class Graph:
                     self.add_direction(cur_path[i], dir_dict[cur_path[i+1]])
                     traversal_path.append(dir_dict[cur_path[i+1]])
                     i += 1
-                print(dir_dict)
+                # print(dir_dict)
                 self.visited.remove(cur_path[-1])
                 self.dft(cur_path[-1])
                 return
@@ -135,7 +135,7 @@ class Graph:
                     self.add_direction(cur_path[i], dir_dict[cur_path[i+1]])
                     traversal_path.append(dir_dict[cur_path[i+1]])
                     i += 1
-                print(dir_dict)
+                # print(dir_dict)
                 self.visited.remove(cur_path[-1])
                 self.dft(cur_path[-1])
                 return
@@ -147,7 +147,7 @@ class Graph:
                     self.add_direction(cur_path[i], dir_dict[cur_path[i+1]])
                     traversal_path.append(dir_dict[cur_path[i+1]])
                     i += 1
-                print(dir_dict)
+                # print(dir_dict)
                 self.visited.remove(cur_path[-1])
                 self.dft(cur_path[-1])
                 return
@@ -155,10 +155,10 @@ class Graph:
                 revisit.add(cur_room)
                 for neighbor in edges:
                     path_copy = list(cur_path)
-                    print(f"Neighbor: {neighbor}")
+                    # print(f"Neighbor: {neighbor}")
                     if self.vertices[cur_room][neighbor] not in dir_dict:
                         dir_dict[self.vertices[cur_room][neighbor]] = neighbor
-                    print(dir_dict)
+                    # print(dir_dict)
                     path_copy.append(self.vertices[cur_room][neighbor])
                     queue.insert(0, path_copy)
 
